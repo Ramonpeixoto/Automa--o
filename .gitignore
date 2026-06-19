@@ -1,0 +1,9 @@
+# Ignorar credenciais e tokens
+meu_token.txt
+credenciais.json
+*.json
+
+# Ignorar bases de dados e arquivos locais
+Espelho_itens_Mestre_2.xlsx
+*.xlsx
+*.csv
