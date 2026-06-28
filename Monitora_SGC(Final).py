@@ -53,6 +53,25 @@ Respostas.raise_for_status()  # Verifica se a requisição foi bem-sucedida
 df = pd.DataFrame(Respostas.json())
 
 print("importação concluída, tratando dados JSON...")
+print("removendo duplicatas")
+
+#vamos remover os processos duplicados
+#contagem de linhas orginais na requisição
+tamanho_original = len(df)
+
+#removendo os processos que estivem com id igual
+df=df.drop_duplicates(subset=['id'], keep='first').reset_index(drop=True)
+
+#contar quantas linhas sobraram
+tamanho_novo = len(df)
+if tamanho_original != tamanho_novo:
+    duplicatas_removidas = tamanho_original - tamanho_novo
+    print(f"{duplicatas_removidas} processos duplicados removidos")
+else:
+    print("Nenhum processo duplicado removido")
+
+
+
 
 # 1. traduzindo os dois json de uma vez
 df['lotes_json'] = df['lotes_json'].apply(lambda x: json.loads(x) if isinstance(x, str) else x)
