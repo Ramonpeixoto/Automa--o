@@ -111,7 +111,7 @@ def transformar_dados(df, caminho_mestre):
     df['historico_json'] = df['historico_json'].apply(lambda x: json.loads(x) if isinstance(x, str) else [])
     df['Histórico do Processo'] = df['historico_json'].apply(compilar_historico)
 
-    colunas_para_dropar = ['item_id', 'position_item', 'lote_id', 'nome_lote', 'pncp_json', 'pncp_item_exato', 'pncp_position_item', 'historico_json', 'ac_nome']
+    colunas_para_dropar = ['item_id', 'position_item', 'lote_id', 'nome_lote', 'pncp_json', 'pncp_item_exato', 'pncp_position_item', 'historico_json']
     df_final = df.drop(columns=colunas_para_dropar, errors='ignore').copy().reset_index(drop=True)
 
     for coluna in df_final.select_dtypes(include=['object', 'string']).columns:
